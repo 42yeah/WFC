@@ -59,17 +59,41 @@ WFCState WFC::observe() {
     }
     
     // Just grab one
-    
-    
+    std::uniform_int_distribution<> distrib = std::uniform_int_distribution<>(0, (int) indices.size() - 1);
+    Vec2 pos = indices[distrib(dev)];
+    ban(pos);
+    propagate(pos - input->patternSize + Vec2(1, 1), pos + Vec2(1, 1));
     return FINE;
 }
 
-void WFC::ban() { 
-    
+/**
+ Ban a tile to its definite state, regardless of everything else.
+ */
+void WFC::ban(Vec2 pos) {
+    OutputTile *tile = at(pos);
+    if (!tile) { return; } // What the hell?
+    int entropy = tile->getEntropy();
+    std::uniform_int_distribution<> distrib = std::uniform_int_distribution<>(0, entropy - 1);
+    int selection = distrib(dev);
+    for (int i = 0; i < tile->candidates.size(); i++) {
+        selection -= tile->candidates[i].second;
+        if (selection <= 0) {
+            tile->definiteValue = tile->candidates[i].first;
+            return;
+        }
+    }
+    // Shouldn't be here
+    return;
 }
 
-void WFC::propagate() {
-    
+void WFC::propagate(Vec2 si, Vec2 ee) {
+    // From the start inclusive area to the end exclusive area...
+    for (int y = si.y; y < ee.y; y++) {
+        for (int x = si.x; x < ee.x; x++) {
+            // Every pattern tiles
+            
+        }
+    }
 }
 
 std::vector<Vec2> WFC::findLowestEntropyTiles() {

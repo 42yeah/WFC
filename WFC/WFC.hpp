@@ -35,8 +35,12 @@ public:
     
 private:
     WFCState observe();
-    void propagate();
-    void ban();
+    
+    /**
+     si and ee stands for Start Inclusive and End Exclusive.
+    */
+    void propagate(Vec2 si, Vec2 ee);
+    void ban(Vec2 pos);
 
     std::vector<Vec2> findLowestEntropyTiles();
     OutputTile *at(Vec2 pos);
@@ -45,7 +49,6 @@ private:
     Vec2 outputSize;
     OutputTile **output;
     
-    std::uniform_int_distribution<> distrib;
     std::random_device dev;
 };
 

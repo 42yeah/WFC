@@ -31,13 +31,13 @@ public:
     void printRaw(std::ostream &ostream);
     
     std::vector<std::pair<char, int> > frequencies;
+    Vec2 patternSize;
 
 private:
     void processFile(std::string path);
     void pushFrequency(char val, int freq);
 
     int modelWidth, modelHeight;
-    Vec2 patternSize;
     char **map;
     std::vector<Pattern> patterns;
 };
