@@ -14,7 +14,10 @@
 
 
 struct OutputTile {
+    OutputTile() {}
     OutputTile(std::vector<std::pair<char, int> > candidates);
+    
+    OutputTile &operator=(std::vector<std::pair<char, int> > candidates);
 
     char definiteValue;
     std::vector<std::pair<char, int> > candidates;
@@ -34,6 +37,7 @@ public:
 private:
     Input *input;
     Vec2 outputSize;
+    OutputTile **output;
 };
 
 #endif /* WFC_hpp */

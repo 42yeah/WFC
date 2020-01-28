@@ -29,6 +29,8 @@ public:
     
     char at(Vec2 pos);
     void printRaw(std::ostream &ostream);
+    
+    std::vector<std::pair<char, int> > frequencies;
 
 private:
     void processFile(std::string path);
@@ -38,7 +40,6 @@ private:
     Vec2 patternSize;
     char **map;
     std::vector<Pattern> patterns;
-    std::vector<std::pair<char, int> > frequencies;
 };
 
 #endif /* Input_hpp */
