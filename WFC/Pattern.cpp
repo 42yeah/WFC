@@ -33,7 +33,7 @@ Pattern::Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation tr
                 default:
                     break;
             }
-            rawPattern[y][x] = input->at(vec2);
+            rawPattern[y][x] = input->at(basePos + vec2);
         }
     }
 }

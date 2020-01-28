@@ -38,7 +38,7 @@ Vec2 &Vec2::operator-=(Vec2 another) {
  */
 void Vec2::rot90(Vec2 size) {
     Vec2 nVec(y, x);
-    nVec.x = size.x - nVec.x + 1;
+    nVec.x = size.x - nVec.x - 1;
     x = nVec.x;
     y = nVec.y;
 }
@@ -47,7 +47,7 @@ void Vec2::rot90(Vec2 size) {
  Just mirror y.
  */
 void Vec2::rot180(Vec2 size) {
-    Vec2 nVec(size.y - y + 1, x);
+    Vec2 nVec(size.x - x - 1, size.y - y - 1);
     x = nVec.x;
     y = nVec.y;
 }
@@ -57,7 +57,7 @@ void Vec2::rot180(Vec2 size) {
  */
 void Vec2::rot270(Vec2 size) {
     Vec2 nVec(y, x);
-    nVec.y = size.y - nVec.y + 1;
+    nVec.y = size.y - nVec.y - 1;
     x = nVec.x;
     y = nVec.y;
 }

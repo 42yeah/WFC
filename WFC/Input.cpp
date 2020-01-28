@@ -67,9 +67,9 @@ void Input::processPatterns(Vec2 size) {
     for (int i = 0; i < patterns.size(); i++) {
         for (int j = i + 1; j < patterns.size(); j++) {
             if (patterns[i] == patterns[j]) {
-//                patterns.erase(patterns.begin() + j, patterns.begin() + j + 1);
-//                patterns[i].frequency++;
-//                j--;
+                patterns.erase(patterns.begin() + j, patterns.begin() + j + 1);
+                patterns[i].frequency++;
+                j--;
                 continue;
             }
         }
