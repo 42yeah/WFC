@@ -9,12 +9,13 @@
 #ifndef WFC_hpp
 #define WFC_hpp
 
+#include <iostream>
 #include "Input.hpp"
 #include "Vec2.hpp"
 
 
 struct OutputTile {
-    OutputTile() {}
+    OutputTile() : definiteValue(0) {}
     OutputTile(std::vector<std::pair<char, int> > candidates);
     
     OutputTile &operator=(std::vector<std::pair<char, int> > candidates);
@@ -33,6 +34,8 @@ public:
     WFC(Input *input);
     
     void generate(Vec2 size);
+    
+    void printRaw(std::ostream &ostream);
     
 private:
     Input *input;
