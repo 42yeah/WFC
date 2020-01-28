@@ -43,6 +43,16 @@ char Input::at(Vec2 pos) {
 }
 
 void Input::printRaw(std::ostream &ostream) {
+    ostream << "#Patterns: " << patterns.size() << std::endl;
+    for (int i = 0; i < patterns.size(); i++) {
+        patterns[i].printRaw(ostream);
+    }
+    ostream << std::endl;
+    ostream << "Frequencies:" << std::endl;
+    for (int i = 0; i < frequencies.size(); i++) {
+        ostream << frequencies[i].first << ": " << frequencies[i].second << std::endl;
+    }
+    ostream << "Raw:" << std::endl;
     for (int y = 0; y < modelHeight; y++) {
         for (int x = 0; x < modelWidth; x++) {
             ostream << at(Vec2(x, y));
@@ -56,6 +66,7 @@ void Input::processPatterns(Vec2 size) {
     patterns.clear();
     frequencies.clear();
     
+    // Add patterns to list
     for (int y = 0; y < modelHeight - size.y + 1; y++) {
         for (int x = 0; x < modelWidth - size.x + 1; x++) {
             patterns.push_back(Pattern(this, patternSize, Vec2(x, y), NOPE));
@@ -84,7 +95,6 @@ void Input::processPatterns(Vec2 size) {
             }
         }
     }
-    
 }
 
 void Input::pushFrequency(char val, int freq) {
