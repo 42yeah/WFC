@@ -26,6 +26,7 @@ public:
 
     void printRaw(std::ostream &ostream);
     char at(Vec2 pos);
+    Vec2 getPatternSize();
 
     bool operator==(Pattern &another);
 

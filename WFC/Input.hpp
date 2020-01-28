@@ -32,11 +32,13 @@ public:
 
 private:
     void processFile(std::string path);
+    void pushFrequency(char val, int freq);
 
     int modelWidth, modelHeight;
     Vec2 patternSize;
     char **map;
     std::vector<Pattern> patterns;
+    std::vector<std::pair<char, int>> frequencies;
 };
 
 #endif /* Input_hpp */

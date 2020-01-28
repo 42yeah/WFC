@@ -90,3 +90,8 @@ bool Pattern::operator==(Pattern &another) {
     }
     return true;
 }
+
+Vec2 Pattern::getPatternSize() { 
+    return size;
+}
+
