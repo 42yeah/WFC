@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F18D6EA823DFEEFA006C4BEE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F18D6EA723DFEEFA006C4BEE /* main.cpp */; };
 		F19F998B23E009BD0015AA1F /* WFC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F19F998923E009BD0015AA1F /* WFC.cpp */; };
+		F19F998E23E00F820015AA1F /* OutputTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F19F998C23E00F820015AA1F /* OutputTile.cpp */; };
 		F1E00E1B23DFF1080006F3A6 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1E00E1923DFF1080006F3A6 /* Input.cpp */; };
 		F1E00E2223DFF5040006F3A6 /* Vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1E00E2023DFF5040006F3A6 /* Vec2.cpp */; };
 		F1E00E2523DFF81A0006F3A6 /* Pattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1E00E2323DFF81A0006F3A6 /* Pattern.cpp */; };
@@ -31,6 +32,8 @@
 		F18D6EA723DFEEFA006C4BEE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F19F998923E009BD0015AA1F /* WFC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WFC.cpp; sourceTree = "<group>"; };
 		F19F998A23E009BD0015AA1F /* WFC.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WFC.hpp; sourceTree = "<group>"; };
+		F19F998C23E00F820015AA1F /* OutputTile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OutputTile.cpp; sourceTree = "<group>"; };
+		F19F998D23E00F820015AA1F /* OutputTile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OutputTile.hpp; sourceTree = "<group>"; };
 		F1E00E1923DFF1080006F3A6 /* Input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
 		F1E00E1A23DFF1080006F3A6 /* Input.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Input.hpp; sourceTree = "<group>"; };
 		F1E00E1C23DFF1880006F3A6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				F1E00E2423DFF81A0006F3A6 /* Pattern.hpp */,
 				F19F998923E009BD0015AA1F /* WFC.cpp */,
 				F19F998A23E009BD0015AA1F /* WFC.hpp */,
+				F19F998C23E00F820015AA1F /* OutputTile.cpp */,
+				F19F998D23E00F820015AA1F /* OutputTile.hpp */,
 			);
 			path = WFC;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			files = (
 				F19F998B23E009BD0015AA1F /* WFC.cpp in Sources */,
 				F1E00E2223DFF5040006F3A6 /* Vec2.cpp in Sources */,
+				F19F998E23E00F820015AA1F /* OutputTile.cpp in Sources */,
 				F1E00E1B23DFF1080006F3A6 /* Input.cpp in Sources */,
 				F1E00E2523DFF81A0006F3A6 /* Pattern.cpp in Sources */,
 				F18D6EA823DFEEFA006C4BEE /* main.cpp in Sources */,

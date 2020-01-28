@@ -9,18 +9,6 @@
 #include "WFC.hpp"
 
 
-OutputTile::OutputTile(std::vector<std::pair<char, int> > candidates) : candidates(candidates), definiteValue(0) {
-    
-}
-
-OutputTile &OutputTile::operator=(std::vector<std::pair<char, int> > candidates) {
-    definiteValue = 0;
-    this->candidates = candidates;
-    return *this;
-}
-
-
-// === WFC === //
 WFC::WFC(Input *input) : input(input), outputSize(0, 0) {
     
 }
@@ -34,6 +22,8 @@ void WFC::generate(Vec2 size) {
             output[y][x] = input->frequencies;
         }
     }
+    
+    observe();
 }
 
 void WFC::printRaw(std::ostream &ostream) { 
@@ -58,4 +48,53 @@ void WFC::printRaw(std::ostream &ostream) {
         }
         ostream << std::endl;
     }
+}
+
+WFCState WFC::observe() {
+    std::vector<Vec2> indices = findLowestEntropyTiles();
+    if (indices.size() <= 0) {
+        return DONE;
+    } else if (at(indices[0])->getEntropy() <= 0) {
+        return CONTRADICTION;
+    }
+    
+    // Just grab one
+    
+    
+    return FINE;
+}
+
+void WFC::ban() { 
+    
+}
+
+void WFC::propagate() {
+    
+}
+
+std::vector<Vec2> WFC::findLowestEntropyTiles() {
+    std::vector<Vec2> indices;
+    int lo = -1; // An impossible entropy for easy initialization
+    for (int y = 0; y < outputSize.y; y++) {
+        for (int x = 0; x < outputSize.x; x++) {
+            OutputTile &tile = output[y][x];
+            if (tile.definiteValue != 0) { continue; } // We don't care about definite tiles
+            int e = output[y][x].getEntropy();
+            if (lo == -1 || e < lo) {
+                indices.clear();
+                lo = e;
+            }
+            if (e <= lo) {
+                indices.push_back(Vec2(x, y));
+            }
+        }
+    }
+    return indices;
+}
+
+OutputTile *WFC::at(Vec2 pos) {
+    if (!pos.boundaryCheck(outputSize)) {
+        return nullptr;
+    }
+    return &output[pos.y][pos.x];
 }

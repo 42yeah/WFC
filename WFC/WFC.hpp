@@ -10,19 +10,11 @@
 #define WFC_hpp
 
 #include <iostream>
+#include <random>
 #include "Input.hpp"
 #include "Vec2.hpp"
+#include "OutputTile.hpp"
 
-
-struct OutputTile {
-    OutputTile() : definiteValue(0) {}
-    OutputTile(std::vector<std::pair<char, int> > candidates);
-    
-    OutputTile &operator=(std::vector<std::pair<char, int> > candidates);
-
-    char definiteValue;
-    std::vector<std::pair<char, int> > candidates;
-};
 
 enum WFCState {
     FINE, DONE, CONTRADICTION
@@ -43,13 +35,18 @@ public:
     
 private:
     WFCState observe();
-    void collapse();
     void propagate();
     void ban();
 
+    std::vector<Vec2> findLowestEntropyTiles();
+    OutputTile *at(Vec2 pos);
+    
     Input *input;
     Vec2 outputSize;
     OutputTile **output;
+    
+    std::uniform_int_distribution<> distrib;
+    std::random_device dev;
 };
 
 #endif /* WFC_hpp */
