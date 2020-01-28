@@ -90,8 +90,13 @@ void WFC::propagate(Vec2 si, Vec2 ee) {
     // From the start inclusive area to the end exclusive area...
     for (int y = si.y; y < ee.y; y++) {
         for (int x = si.x; x < ee.x; x++) {
-            // Every pattern tiles
-            
+            // For every pattern tiles...
+            for (int b = 0; b < input->patternSize.y; b++) {
+                for (int a = 0; a < input->patternSize.x; a++) {
+                    // We assume a finalized value for it.
+                    
+                }
+            }
         }
     }
 }
