@@ -9,6 +9,7 @@
 #ifndef Input_hpp
 #define Input_hpp
 
+#include <iostream>
 #include <string>
 #include "Vec2.hpp"
 
@@ -23,6 +24,7 @@ public:
     Input(std::string path);
     
     char at(Vec2 pos);
+    void printRaw(std::ostream &ostream);
 
 private:
     void processFile(std::string path);

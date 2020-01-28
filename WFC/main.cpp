@@ -12,6 +12,6 @@
 
 int main(int argc, const char * argv[]) {
     Input input("Assets/default");
-    
+    input.printRaw(std::cout);
     return 0;
 }

@@ -41,3 +41,12 @@ char Input::at(Vec2 pos) {
     }
     return map[pos.y][pos.x];
 }
+
+void Input::printRaw(std::ostream &ostream) {
+    for (int y = 0; y < modelHeight; y++) {
+        for (int x = 0; x < modelWidth; x++) {
+            ostream << at(Vec2(x, y));
+        }
+        ostream << std::endl;
+    }
+}
