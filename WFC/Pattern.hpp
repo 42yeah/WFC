@@ -9,9 +9,24 @@
 #ifndef Pattern_hpp
 #define Pattern_hpp
 
+#include "Vec2.hpp"
+
+
+class Input;
+
+enum PatternTransformation {
+    NOPE, ROT90, ROT180, ROT270
+};
 
 class Pattern {
+public:
+    Pattern() {}
+    Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation transformation);
     
+private:
+    PatternTransformation transformation;
+    Vec2 size;
+    char **rawPattern;
 };
 
 #endif /* Pattern_hpp */

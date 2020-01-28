@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include "Pattern.hpp"
 #include "Vec2.hpp"
 
 
@@ -23,6 +25,8 @@ public:
     Input() {}
     Input(std::string path);
     
+    void processPatterns(Vec2 size);
+    
     char at(Vec2 pos);
     void printRaw(std::ostream &ostream);
 
@@ -30,7 +34,9 @@ private:
     void processFile(std::string path);
 
     int modelWidth, modelHeight;
+    Vec2 patternSize;
     char **map;
+    std::vector<Pattern> patterns;
 };
 
 #endif /* Input_hpp */

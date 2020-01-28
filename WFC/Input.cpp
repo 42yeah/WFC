@@ -50,3 +50,14 @@ void Input::printRaw(std::ostream &ostream) {
         ostream << std::endl;
     }
 }
+
+void Input::processPatterns(Vec2 size) {
+    patternSize = size;
+    patterns.clear();
+    
+    for (int y = 0; y < modelHeight - size.y + 1; y++) {
+        for (int x = 0; x < modelWidth - size.x + 1; x++) {
+            
+        }
+    }
+}
