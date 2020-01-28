@@ -37,3 +37,21 @@ Pattern::Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation tr
         }
     }
 }
+
+void Pattern::printRaw(std::ostream &ostream) { 
+    ostream << "Pattern size: " << size.x << "x" << size.y << std::endl;
+    ostream << "Pattern:" << std::endl;
+    for (int y = 0; y < size.y; y++) {
+        for (int x = 0; x < size.x; x++) {
+            ostream << at(Vec2(x, y));
+        }
+        ostream << std::endl;
+    }
+}
+
+char Pattern::at(Vec2 pos) { 
+    if (!pos.boundaryCheck(size)) {
+        return 0;
+    }
+    return rawPattern[pos.y][pos.x];
+}

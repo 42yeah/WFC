@@ -10,6 +10,7 @@
 #define Pattern_hpp
 
 #include "Vec2.hpp"
+#include <iostream>
 
 
 class Input;
@@ -22,6 +23,9 @@ class Pattern {
 public:
     Pattern() {}
     Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation transformation);
+    
+    void printRaw(std::ostream &ostream);
+    char at(Vec2 pos);
     
 private:
     PatternTransformation transformation;
