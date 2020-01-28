@@ -24,6 +24,10 @@ struct OutputTile {
     std::vector<std::pair<char, int> > candidates;
 };
 
+enum WFCState {
+    FINE, DONE, CONTRADICTION
+};
+
 /**
  The core algorithm. Here's where the fun lies.
  We are only implementing the overlapping model, though.
@@ -38,6 +42,11 @@ public:
     void printRaw(std::ostream &ostream);
     
 private:
+    WFCState observe();
+    void collapse();
+    void propagate();
+    void ban();
+
     Input *input;
     Vec2 outputSize;
     OutputTile **output;
