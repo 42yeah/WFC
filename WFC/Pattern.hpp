@@ -23,10 +23,14 @@ class Pattern {
 public:
     Pattern() {}
     Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation transformation);
-    
+
     void printRaw(std::ostream &ostream);
     char at(Vec2 pos);
-    
+
+    bool operator==(Pattern &another);
+
+    int frequency;
+
 private:
     PatternTransformation transformation;
     Vec2 size;

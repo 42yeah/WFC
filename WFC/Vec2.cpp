@@ -65,3 +65,7 @@ void Vec2::rot270(Vec2 size) {
 bool Vec2::boundaryCheck(Vec2 size) {
     return !(x < 0 || y < 0 || x >= size.x || y >= size.y);
 }
+
+bool Vec2::operator==(Vec2 another) { 
+    return (x == another.x && y == another.y);
+}

@@ -20,6 +20,8 @@ public:
     Vec2 operator-(Vec2 another);
     Vec2 &operator+=(Vec2 another);
     Vec2 &operator-=(Vec2 another);
+    
+    bool operator==(Vec2 another);
 
     bool boundaryCheck(Vec2 size);
 

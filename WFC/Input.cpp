@@ -57,7 +57,24 @@ void Input::processPatterns(Vec2 size) {
     
     for (int y = 0; y < modelHeight - size.y + 1; y++) {
         for (int x = 0; x < modelWidth - size.x + 1; x++) {
-            
+            patterns.push_back(Pattern(this, patternSize, Vec2(x, y), NOPE));
+            patterns.push_back(Pattern(this, patternSize, Vec2(x, y), ROT90));
+            patterns.push_back(Pattern(this, patternSize, Vec2(x, y), ROT180));
+            patterns.push_back(Pattern(this, patternSize, Vec2(x, y), ROT270));
         }
+    }
+    // Eliminate the same
+    for (int i = 0; i < patterns.size(); i++) {
+        for (int j = i + 1; j < patterns.size(); j++) {
+            if (patterns[i] == patterns[j]) {
+//                patterns.erase(patterns.begin() + j, patterns.begin() + j + 1);
+//                patterns[i].frequency++;
+//                j--;
+                continue;
+            }
+        }
+    }
+    for (int i = 0; i < patterns.size(); i++) {
+        patterns[i].printRaw(std::cout);
     }
 }

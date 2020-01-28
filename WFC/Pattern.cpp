@@ -10,7 +10,7 @@
 #include "Input.hpp"
 
 
-Pattern::Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation transformation) : size(size), transformation(transformation) {
+Pattern::Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation transformation) : size(size), transformation(transformation), frequency(1) {
     rawPattern = new char*[size.y];
     for (int y = 0; y < size.y; y++) {
         rawPattern[y] = new char[size.x];
@@ -40,6 +40,29 @@ Pattern::Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation tr
 
 void Pattern::printRaw(std::ostream &ostream) { 
     ostream << "Pattern size: " << size.x << "x" << size.y << std::endl;
+    ostream << "Frequency: " << frequency << std::endl;
+    ostream << "Transformation: ";
+    switch (transformation) {
+        case NOPE:
+            ostream << "NOPE" << std::endl;
+            break;
+            
+        case ROT90:
+            ostream << "ROT90" << std::endl;
+            break;
+        
+        case ROT180:
+            ostream << "ROT180" << std::endl;
+            break;
+        
+        case ROT270:
+            ostream << "ROT270" << std::endl;
+            break;
+        
+        default:
+            ostream << "DUNNO" << std::endl;
+            break;
+    }
     ostream << "Pattern:" << std::endl;
     for (int y = 0; y < size.y; y++) {
         for (int x = 0; x < size.x; x++) {
@@ -54,4 +77,16 @@ char Pattern::at(Vec2 pos) {
         return 0;
     }
     return rawPattern[pos.y][pos.x];
+}
+
+bool Pattern::operator==(Pattern &another) { 
+    for (int y = 0; y < size.y; y++) {
+        for (int x = 0; x < size.x; x++) {
+            Vec2 pos(x, y);
+            if (at(pos) != another.at(pos)) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
