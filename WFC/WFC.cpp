@@ -7,3 +7,19 @@
 //
 
 #include "WFC.hpp"
+
+
+OutputTile::OutputTile(std::vector<std::pair<char, int> > candidates) : candidates(candidates) {
+    
+}
+
+// === WFC === //
+WFC::WFC(Input *input) : input(input), outputSize(0, 0) {
+    
+}
+
+void WFC::generate(Vec2 size) {
+    outputSize = size;
+    
+}
+

@@ -38,7 +38,7 @@ private:
     Vec2 patternSize;
     char **map;
     std::vector<Pattern> patterns;
-    std::vector<std::pair<char, int>> frequencies;
+    std::vector<std::pair<char, int> > frequencies;
 };
 
 #endif /* Input_hpp */

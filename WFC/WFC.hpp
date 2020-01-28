@@ -9,9 +9,31 @@
 #ifndef WFC_hpp
 #define WFC_hpp
 
+#include "Input.hpp"
+#include "Vec2.hpp"
 
+
+struct OutputTile {
+    OutputTile(std::vector<std::pair<char, int> > candidates);
+
+    char definiteValue;
+    std::vector<std::pair<char, int> > candidates;
+};
+
+/**
+ The core algorithm. Here's where the fun lies.
+ We are only implementing the overlapping model, though.
+ */
 class WFC {
+public:
+    WFC() {}
+    WFC(Input *input);
     
+    void generate(Vec2 size);
+    
+private:
+    Input *input;
+    Vec2 outputSize;
 };
 
 #endif /* WFC_hpp */
