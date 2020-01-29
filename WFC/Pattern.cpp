@@ -71,7 +71,8 @@ void Pattern::printRaw(std::ostream &ostream, bool printAgreements) {
         ostream << std::endl;
     }
     if (!printAgreements) { return; }
-    ostream << "Pattern agreements: #" << overlaps.size();
+    ostream << "Pattern agreements: #" << overlaps.size() << std::endl;
+    ostream << std::endl;
 }
 
 char Pattern::at(Vec2 pos) { 
