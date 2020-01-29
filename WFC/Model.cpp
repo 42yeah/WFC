@@ -95,6 +95,22 @@ void Model::processPatterns(Vec2 size) {
             }
         }
     }
+    // Compute adjacency rules
+    for (int i = 0; i < patterns.size(); i++) {
+        Pattern &pattern = patterns[i];
+        for (int y = -pattern.getPatternSize().y + 1; y < pattern.getPatternSize().y; y++) {
+            for (int x = -pattern.getPatternSize().x + 1; x < pattern.getPatternSize().x; x++) {
+                Vec2 offset(x, y);
+                Overlaps overlaps(offset);
+                for (int j = 0; j < patterns.size(); j++) {
+                    if (pattern.agrees(&patterns[j], Vec2(x, y))) {
+                        overlaps.patterns.push_back(&patterns[j]);
+                    }
+                }
+                pattern.overlaps.push_back(overlaps);
+            }
+        }
+    }
 }
 
 void Model::pushFrequency(char val, int freq) {

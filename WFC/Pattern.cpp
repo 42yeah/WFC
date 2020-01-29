@@ -38,7 +38,7 @@ Pattern::Pattern(Model *model, Vec2 size, Vec2 basePos, PatternTransformation tr
     }
 }
 
-void Pattern::printRaw(std::ostream &ostream) { 
+void Pattern::printRaw(std::ostream &ostream, bool printAgreements) {
     ostream << "Pattern size: " << size.x << "x" << size.y << std::endl;
     ostream << "Frequency: " << frequency << std::endl;
     ostream << "Transformation: ";
@@ -70,6 +70,16 @@ void Pattern::printRaw(std::ostream &ostream) {
         }
         ostream << std::endl;
     }
+    if (!printAgreements) { return; }
+    ostream << "Pattern agreements: #" << overlaps.size() << "{" << std::endl;
+    for (int i = 0; i < overlaps.size(); i++) {
+        Overlaps &o = overlaps[i];
+        ostream << o.offset.x << ", " << o.offset.y << ": ";
+        for (int j = 0; j < o.patterns.size(); j++) {
+            o.patterns[j]->printRaw(ostream, false);
+        }
+    }
+    ostream << "}" << std::endl;
 }
 
 char Pattern::at(Vec2 pos) { 
@@ -95,3 +105,20 @@ Vec2 Pattern::getPatternSize() {
     return size;
 }
 
+bool Pattern::agrees(Pattern *another, Vec2 deltaPos) {
+    for (int y = 0; y < size.y; y++) {
+        for (int x = 0; x < size.x; x++) {
+            Vec2 mPos = Vec2(x, y);
+            Vec2 aPos = mPos - deltaPos;
+            if (!aPos.boundaryCheck(another->size) || !mPos.boundaryCheck(size)) { continue; }
+//            std::cout << deltaPos.x << ", " << deltaPos.y << " | " << mPos.x << ", " << mPos.y << " | " << aPos.x << ", " << aPos.y << ": ";
+//            std::cout << at(mPos) << " != " << another->at(aPos);
+            if (another->at(aPos) != at(mPos)) {
+//                std::cout << " RET" << std::endl;
+                return false;
+            }
+//            std::cout << std::endl;
+        }
+    }
+    return true;
+}
