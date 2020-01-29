@@ -50,6 +50,11 @@ std::vector<Vec2> WFC::findLowestEntropyCells() {
     return positions;
 }
 
+Cell *WFC::at(Vec2 pos) {
+    if (!pos.boundaryCheck(waveSize)) { return nullptr; }
+    return &wave[pos.y][pos.x];
+}
+
 ObserveState WFC::observe() { 
     std::vector<Vec2> optimals = findLowestEntropyCells();
     if (optimals.size() <= 0) { return DONE; }
@@ -57,10 +62,19 @@ ObserveState WFC::observe() {
     std::uniform_int_distribution<> distrib(0, (int) optimals.size() - 1);
     int index = distrib(dev);
     at(optimals[index])->finalize();
+    
+    // flag updates
+    for (int y = -model->patternSize.y + 1; y < model->patternSize.y; y++) {
+        for (int x = -model->patternSize.x + 1; x < model->patternSize.x; x++) {
+            Vec2 pos(x, y);
+            Cell *cell = at(pos);
+            if (!cell || cell->isDefinite()) { continue; }
+            updates.push_back(pos);
+        }
+    }
     return FINE;
 }
 
-Cell *WFC::at(Vec2 pos) {
-    if (!pos.boundaryCheck(waveSize)) { return nullptr; }
-    return &wave[pos.y][pos.x];
+void WFC::propagate() { 
+    // TODO
 }

@@ -26,6 +26,7 @@ public:
     
     void generate(Vec2 size);
     ObserveState observe();
+    void propagate();
 
 private:
     std::vector<Vec2> findLowestEntropyCells();
@@ -35,6 +36,8 @@ private:
     Model *model;
     Cell **wave;
     Vec2 waveSize;
+    
+    std::vector<Vec2> updates;
 };
 
 #endif /* WFC_hpp */
