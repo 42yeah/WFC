@@ -1,13 +1,13 @@
 //
-//  Input.hpp
+//  Model.hpp
 //  WFC
 //
 //  Created by 周昊 on 2020/1/28.
 //  Copyright © 2020 aiofwa. All rights reserved.
 //
 
-#ifndef Input_hpp
-#define Input_hpp
+#ifndef Model_hpp
+#define Model_hpp
 
 #include <iostream>
 #include <string>
@@ -17,13 +17,13 @@
 
 
 /**
- The input model of the WFC. We will process patterns from here.
- After that the input would be fed into the output.
+ The model model of the WFC. We will process patterns from here.
+ After that the model would be fed into the output.
  */
-class Input {
+class Model {
 public:
-    Input() {}
-    Input(std::string path);
+    Model() {}
+    Model(std::string path);
     
     void processPatterns(Vec2 size);
     
@@ -42,4 +42,4 @@ private:
     std::vector<Pattern> patterns;
 };
 
-#endif /* Input_hpp */
+#endif /* Model_hpp */

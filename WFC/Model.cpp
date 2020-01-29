@@ -1,21 +1,21 @@
 //
-//  Input.cpp
+//  Model.cpp
 //  WFC
 //
 //  Created by 周昊 on 2020/1/28.
 //  Copyright © 2020 aiofwa. All rights reserved.
 //
 
-#include "Input.hpp"
+#include "Model.hpp"
 #include <fstream>
 #include <iostream>
 
 
-Input::Input(std::string path) {
+Model::Model(std::string path) {
     processFile(path);
 }
 
-void Input::processFile(std::string path) { 
+void Model::processFile(std::string path) {
     std::ifstream f(path);
     if (!f.good()) {
         return;
@@ -35,14 +35,14 @@ void Input::processFile(std::string path) {
     }
 }
 
-char Input::at(Vec2 pos) { 
+char Model::at(Vec2 pos) {
     if (!pos.boundaryCheck(Vec2(modelWidth, modelHeight))) {
         return 0; // Nothing? Empty?
     }
     return map[pos.y][pos.x];
 }
 
-void Input::printRaw(std::ostream &ostream) {
+void Model::printRaw(std::ostream &ostream) {
     ostream << "#Patterns: " << patterns.size() << std::endl;
     for (int i = 0; i < patterns.size(); i++) {
         patterns[i].printRaw(ostream);
@@ -61,7 +61,7 @@ void Input::printRaw(std::ostream &ostream) {
     }
 }
 
-void Input::processPatterns(Vec2 size) {
+void Model::processPatterns(Vec2 size) {
     patternSize = size;
     patterns.clear();
     frequencies.clear();
@@ -97,7 +97,7 @@ void Input::processPatterns(Vec2 size) {
     }
 }
 
-void Input::pushFrequency(char val, int freq) {
+void Model::pushFrequency(char val, int freq) {
     for (int i = 0; i < frequencies.size(); i++) {
         if (frequencies[i].first == val) {
             frequencies[i].second += freq;

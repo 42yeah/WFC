@@ -13,7 +13,7 @@
 #include <iostream>
 
 
-class Input;
+class Model;
 
 enum PatternTransformation {
     NOPE, ROT90, ROT180, ROT270
@@ -22,7 +22,7 @@ enum PatternTransformation {
 class Pattern {
 public:
     Pattern() {}
-    Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation transformation);
+    Pattern(Model *model, Vec2 size, Vec2 basePos, PatternTransformation transformation);
 
     void printRaw(std::ostream &ostream);
     char at(Vec2 pos);

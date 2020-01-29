@@ -7,10 +7,10 @@
 //
 
 #include "Pattern.hpp"
-#include "Input.hpp"
+#include "Model.hpp"
 
 
-Pattern::Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation transformation) : size(size), transformation(transformation), frequency(1) {
+Pattern::Pattern(Model *model, Vec2 size, Vec2 basePos, PatternTransformation transformation) : size(size), transformation(transformation), frequency(1) {
     rawPattern = new char*[size.y];
     for (int y = 0; y < size.y; y++) {
         rawPattern[y] = new char[size.x];
@@ -33,7 +33,7 @@ Pattern::Pattern(Input *input, Vec2 size, Vec2 basePos, PatternTransformation tr
                 default:
                     break;
             }
-            rawPattern[y][x] = input->at(basePos + vec2);
+            rawPattern[y][x] = model->at(basePos + vec2);
         }
     }
 }

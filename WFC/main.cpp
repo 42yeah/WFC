@@ -7,13 +7,13 @@
 //
 
 #include <iostream>
-#include "Input.hpp"
+#include "Model.hpp"
 
 
 int main(int argc, const char * argv[]) {
-    Input input("Assets/default");
-    input.processPatterns(Vec2(3, 3)); // N=3
-    input.printRaw(std::cout);
+    Model model("Assets/default");
+    model.processPatterns(Vec2(3, 3)); // N=3
+    model.printRaw(std::cout);
     
     return 0;
 }
