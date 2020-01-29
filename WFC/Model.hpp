@@ -32,6 +32,7 @@ public:
     
     std::vector<std::pair<char, int> > frequencies;
     Vec2 patternSize;
+    std::vector<Pattern> patterns;
 
 private:
     void processFile(std::string path);
@@ -39,7 +40,6 @@ private:
 
     int modelWidth, modelHeight;
     char **map;
-    std::vector<Pattern> patterns;
 };
 
 #endif /* Model_hpp */
