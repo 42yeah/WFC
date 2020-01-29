@@ -71,15 +71,7 @@ void Pattern::printRaw(std::ostream &ostream, bool printAgreements) {
         ostream << std::endl;
     }
     if (!printAgreements) { return; }
-    ostream << "Pattern agreements: #" << overlaps.size() << "{" << std::endl;
-    for (int i = 0; i < overlaps.size(); i++) {
-        Overlaps &o = overlaps[i];
-        ostream << o.offset.x << ", " << o.offset.y << ": ";
-        for (int j = 0; j < o.patterns.size(); j++) {
-            o.patterns[j]->printRaw(ostream, false);
-        }
-    }
-    ostream << "}" << std::endl;
+    ostream << "Pattern agreements: #" << overlaps.size();
 }
 
 char Pattern::at(Vec2 pos) { 
