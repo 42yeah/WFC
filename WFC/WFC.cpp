@@ -26,7 +26,12 @@ void WFC::generate(Vec2 size) {
             wave[y][x] = patterns;
         }
     }
-    wave[0][0].finalize();
+    
+    while (true) {
+        latestResult = observe();
+        if (latestResult == DONE || latestResult == CONTRADICTION) { break; }
+        propagate();
+    }
 }
 
 std::vector<Vec2> WFC::findLowestEntropyCells() {
@@ -55,18 +60,19 @@ Cell *WFC::at(Vec2 pos) {
     return &wave[pos.y][pos.x];
 }
 
-ObserveState WFC::observe() { 
+ObserveResult WFC::observe() { 
     std::vector<Vec2> optimals = findLowestEntropyCells();
     if (optimals.size() <= 0) { return DONE; }
     if (at(optimals[0])->isContradictive()) { return CONTRADICTION; }
     std::uniform_int_distribution<> distrib(0, (int) optimals.size() - 1);
     int index = distrib(dev);
-    at(optimals[index])->finalize();
+    Vec2 finalizedPos = optimals[index];
+    at(finalizedPos)->finalize();
     
     // flag updates
     for (int y = -model->patternSize.y + 1; y < model->patternSize.y; y++) {
         for (int x = -model->patternSize.x + 1; x < model->patternSize.x; x++) {
-            Vec2 pos(x, y);
+            Vec2 pos(finalizedPos.x + x, finalizedPos.y + y);
             Cell *cell = at(pos);
             if (!cell || cell->isDefinite()) { continue; }
             updates.push_back(pos);
@@ -75,6 +81,56 @@ ObserveState WFC::observe() {
     return FINE;
 }
 
-void WFC::propagate() { 
-    // TODO
+void WFC::propagate() {
+    int count = 0;
+    while (updates.size() > 0) {
+        std::cout << "Propagation " << count++ << " is done" << std::endl;
+//        for (int y = 0; y < waveSize.y; y++) {
+//            for (int x = 0; x < waveSize.x; x++) {
+//                std::cout << at(Vec2(x, y))->toChar(Vec2(x, y), model->patternSize, waveSize);
+//            }
+//            std::cout << std::endl;
+//        }
+//        std::cout << std::endl;
+        Vec2 pos = updates[0]; // Get the first
+        updates.erase(updates.begin()); // And remove it (queue)
+        Cell *cell = at(pos);
+        if(cell->update(this, pos)) {
+            for (int y = -model->patternSize.y + 1; y < model->patternSize.y; y++) {
+                for (int x = -model->patternSize.x + 1; x < model->patternSize.x; x++) {
+                    Vec2 p(pos.x + x, pos.y + y);
+                    Cell *cell = at(p);
+                    if (!cell || cell->isDefinite()) { continue; }
+                    updates.push_back(p);
+                }
+            }
+        }
+    }
+    std::cout << "Propagation is done" << std::endl;
+}
+
+void WFC::printRaw(std::ostream &ostream) { 
+    ostream << "Latest result: ";
+    switch (latestResult) {
+        case FINE:
+            ostream << "FINE";
+            break;
+            
+        case DONE:
+            ostream << "DONE";
+            break;
+            
+        case CONTRADICTION:
+            ostream << "CONTRADICTION";
+            break;
+    }
+    ostream << std::endl;
+    
+    for (int y = 0; y < waveSize.y; y++) {
+        for (int x = 0; x < waveSize.x; x++) {
+            ostream << at(Vec2(x, y))->toChar(Vec2(x, y), model->patternSize, waveSize);
+        }
+        ostream << std::endl;
+    }
+    ostream << std::endl;
 }

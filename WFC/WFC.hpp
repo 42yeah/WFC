@@ -9,13 +9,14 @@
 #ifndef WFC_hpp
 #define WFC_hpp
 
+#include <iostream>
 #include <random>
 #include "Model.hpp"
 #include "Cell.hpp"
 #include "Vec2.hpp"
 
 
-enum ObserveState {
+enum ObserveResult {
     FINE, DONE, CONTRADICTION
 };
 
@@ -25,12 +26,15 @@ public:
     WFC(Model *model);
     
     void generate(Vec2 size);
-    ObserveState observe();
+    ObserveResult observe();
     void propagate();
+    
+    Cell *at(Vec2 pos);
+    
+    void printRaw(std::ostream &ostream);
 
 private:
     std::vector<Vec2> findLowestEntropyCells();
-    Cell *at(Vec2 pos);
     std::random_device dev;
 
     Model *model;
@@ -38,6 +42,8 @@ private:
     Vec2 waveSize;
     
     std::vector<Vec2> updates;
+    
+    ObserveResult latestResult;
 };
 
 #endif /* WFC_hpp */

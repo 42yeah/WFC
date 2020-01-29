@@ -12,6 +12,8 @@
 #include "Pattern.hpp"
 
 
+class WFC;
+
 /**
  The output cell.
  */
@@ -27,10 +29,19 @@ struct Cell {
      */
     void finalize();
     
+    /**
+     Update this cell, removing all patterns that are not legit.
+     */
+    bool update(WFC *wfc, Vec2 basePos);
+    
     bool isDefinite();
     bool isContradictive();
     
+    bool has(Pattern *pattern);
+    
     int getEntropy();
+    
+    char toChar(Vec2 pos, Vec2 patternSize, Vec2 mapSize);
 
     std::vector<Pattern *> patterns;
 };

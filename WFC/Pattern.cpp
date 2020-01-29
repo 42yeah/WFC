@@ -103,13 +103,9 @@ bool Pattern::agrees(Pattern *another, Vec2 deltaPos) {
             Vec2 mPos = Vec2(x, y);
             Vec2 aPos = mPos - deltaPos;
             if (!aPos.boundaryCheck(another->size) || !mPos.boundaryCheck(size)) { continue; }
-//            std::cout << deltaPos.x << ", " << deltaPos.y << " | " << mPos.x << ", " << mPos.y << " | " << aPos.x << ", " << aPos.y << ": ";
-//            std::cout << at(mPos) << " != " << another->at(aPos);
             if (another->at(aPos) != at(mPos)) {
-//                std::cout << " RET" << std::endl;
                 return false;
             }
-//            std::cout << std::endl;
         }
     }
     return true;

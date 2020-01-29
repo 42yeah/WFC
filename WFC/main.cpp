@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include "Model.hpp"
 #include "WFC.hpp"
 
@@ -16,6 +17,8 @@ int main(int argc, const char * argv[]) {
     model.processPatterns(Vec2(3, 3)); // N=3
     model.printRaw(std::cout);
     WFC wfc(&model);
-    wfc.generate(Vec2(10, 10));
+    std::ofstream out("out");
+    wfc.generate(Vec2(100, 100));
+    wfc.printRaw(out);
     return 0;
 }
