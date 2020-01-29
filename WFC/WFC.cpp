@@ -81,10 +81,9 @@ ObserveResult WFC::observe() {
     return FINE;
 }
 
+int count = 0;
 void WFC::propagate() {
-    int count = 0;
     while (updates.size() > 0) {
-        std::cout << "Propagation " << count++ << " is done" << std::endl;
 //        for (int y = 0; y < waveSize.y; y++) {
 //            for (int x = 0; x < waveSize.x; x++) {
 //                std::cout << at(Vec2(x, y))->toChar(Vec2(x, y), model->patternSize, waveSize);
@@ -95,7 +94,7 @@ void WFC::propagate() {
         Vec2 pos = updates[0]; // Get the first
         updates.erase(updates.begin()); // And remove it (queue)
         Cell *cell = at(pos);
-        if(cell->update(this, pos)) {
+        if (cell->update(this, pos) && cell->isDefinite()) {
             for (int y = -model->patternSize.y + 1; y < model->patternSize.y; y++) {
                 for (int x = -model->patternSize.x + 1; x < model->patternSize.x; x++) {
                     Vec2 p(pos.x + x, pos.y + y);
@@ -106,7 +105,7 @@ void WFC::propagate() {
             }
         }
     }
-    std::cout << "Propagation is done" << std::endl;
+//    std::cout << "Propagation " << count++ << " is done" << std::endl;
 }
 
 void WFC::printRaw(std::ostream &ostream) { 
