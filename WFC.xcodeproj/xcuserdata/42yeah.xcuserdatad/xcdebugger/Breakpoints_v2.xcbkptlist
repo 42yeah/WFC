@@ -14,8 +14,8 @@
             filePath = "WFC/WFC.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "WFC::ban(pos)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AED059FA-C85A-41DD-8983-9BD1B40EC24A"
+            uuid = "BD01A0EF-6AD5-4979-928C-91299AF228BA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WFC/WFC.cpp"
+            filePath = "WFC/OutputTile.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "WFC::propagate(si, ee)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "OutputTile::pushFrequency(val, freq)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
